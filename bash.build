@@ -1,0 +1,2 @@
+g++ -o main.exe main.cpp -I"C:\raylib\raylib\src"-lraylib -lgdi32 -lwinmm
+ 
