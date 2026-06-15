@@ -1,31 +1,45 @@
 #include <stdio.h>
 #include <stdbool.h>
+#include <string.h>
 
-int get_input_1_or_2() {
+int get_input_1_or_2(const char *opt1, const char *opt2) { //new parameters for dynamic error message.
+    char buffer[100];
     int choice = 0;
-    while (choice != 1 && choice != 2) {
-        if (scanf("%d", &choice) != 1) {
-            while (getchar() != '\n');
+    char extra;
+
+    while (1) {
+        if (fgets(buffer, sizeof(buffer), stdin) == NULL) {
+            printf("Error reading input. Please try again: ");
+            continue;
         }
-        if (choice == 1 || choice == 2) {
-            return choice;
+
+        if (sscanf(buffer, "%d %c", &choice, &extra) == 1) {
+            if (choice == 1 || choice == 2) {
+                return choice;
+            }
         }
-        printf("Please enter either 1(Yes) or 2(No): ");
+        printf("Invalid input. Please enter either 1(%s) or 2(%s): ", opt1, opt2); //give correct choices, no longer just yes or no.
     }
-    return choice;
 }
 
 double get_positive_measurement() {
+    char buffer[100];
     double value = 0;
-    while (value <= 0) {
-        if (scanf("%lf", &value) != 1) {
-            while (getchar() != '\n');
+    char extra;
+
+    while (1) {
+        if (fgets(buffer, sizeof(buffer), stdin) == NULL) {
+            printf("Error reading input. Please try again: ");
+            continue;
         }
-        if (value <= 0) {
-            printf("Please enter a valid positive number: ");
+
+        if (sscanf(buffer, "%lf %c", &value, &extra) == 1) {
+            if (value > 0) {
+                return value;
+            }
         }
+        printf("Invalid input. Please enter a valid positive number: ");
     }
-    return value;
 }
 
 int main(void) {
@@ -33,7 +47,9 @@ int main(void) {
 
     printf("\nWelcome to the Blood Donation Eligibility Checker!\n");
     printf("1. Check for eligibility\n2. Exit\nChoose: ");
-    if (scanf("%d", &menu_choice) != 1 || menu_choice == 2) {
+    
+    menu_choice = get_input_1_or_2("Check Eligibility", "Exit");
+    if (menu_choice == 2) {
         printf("Program terminated.\n");
         return 0;
     }
@@ -46,49 +62,51 @@ int main(void) {
     double actual_weight = get_positive_measurement();
 
     printf("What's your biological sex?\n1 for MALE, 2 for FEMALE: ");
-    int actual_sex = get_input_1_or_2();
+    // Customized for Biological Sex
+    int actual_sex = get_input_1_or_2("MALE", "FEMALE");
 
     printf("\nSTEP 2: Medical History & Screening\n");
     printf("Please enter your hemoglobin level (g/dL): ");
     double actual_hemo = get_positive_measurement();
 
     printf("Have you travelled to malaria or Zika-prone areas within the last 12 months?\n1 for YES, 2 for NO: "); 
-    int actual_travel = get_input_1_or_2();
+    int actual_travel = get_input_1_or_2("YES", "NO");
 
     printf("Have you taken antibiotics or certain medications in the past week?\n1 for YES, 2 for NO: "); 
-    int actual_meds = get_input_1_or_2();
+    int actual_meds = get_input_1_or_2("YES", "NO");
 
     printf("Have you had a tattoo or piercing in the last 12 months?\n1 for YES, 2 for NO: ");
-    int actual_tattoo = get_input_1_or_2();
+    int actual_tattoo = get_input_1_or_2("YES", "NO");
 
     printf("Do you have a history of HIV, IV drug use, or other high-risk behaviour?\n1 for YES, 2 for NO: ");
-    int actual_risk = get_input_1_or_2();
+    int actual_risk = get_input_1_or_2("YES", "NO");
 
     int actual_illness = 2;
     int illness_severity = 0;
     printf("Are you currently experiencing any illness or symptoms?\n1 for YES, 2 for NO: ");
-    actual_illness = get_input_1_or_2();
+    actual_illness = get_input_1_or_2("YES", "NO");
+    
     if (actual_illness == 1) {
-        printf("What kind of illness?\n1 for Major (fever, TB, cancer, HIV, or other systemic infection)\n2 for Minor (Mild cold/sore throat, etc.): ");
-        illness_severity = get_input_1_or_2();
+        printf("What kind of illness?\n1 for Major (fever, TB, cancer, HIV, etc.)\n2 for Minor (Mild cold/sore throat, etc.): ");
+        // Customized for Illness Severity
+        illness_severity = get_input_1_or_2("Major", "Minor");
     }
 
     int actual_preg = 2;
     if (actual_sex == 2) {
         printf("Are you currently pregnant or breastfeeding?\n1 for YES, 2 for NO: ");
-        actual_preg = get_input_1_or_2();
+        actual_preg = get_input_1_or_2("YES", "NO");
     }
 
-
-
+    // --- Logic Processing Block ---
     bool p = (actual_age >= 18 && actual_age <= 65);
     bool q = (actual_weight >= 50);
     bool r = (actual_sex == 1); // True = Male, False = Female
     
     bool s = false;
-    if (r) { // If Male
+    if (r) { 
         s = (actual_hemo >= 13.0);
-    } else { // If Female
+    } else { 
         s = (actual_hemo >= 12.0);
     }
 
@@ -102,6 +120,7 @@ int main(void) {
     bool w_minor   = (actual_illness == 1 && illness_severity == 2);
     bool w_major   = (actual_illness == 1 && illness_severity == 1);
 
+    printf("\n=========================================\n");
     if (!p || !q || w_major || x) {
         printf("Output Status: INELIGIBLE\n");
         printf("Reasoning:\n");
