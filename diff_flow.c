@@ -42,6 +42,28 @@ double get_positive_measurement() {
     }
 }
 
+struct MedHistory{
+    int meds_anti;
+    int meds_pros;
+    int pros_fin;
+    int pros_dut;
+    int meds_acne;
+    int acne_iso;
+    int acne_aci;
+    int meds_blood;
+    int blood_coag;
+    int blood_plate;
+    int meds_HIV;
+    int HIV_oral;
+    int HIV_inject;
+    int meds_art;
+    int art_upa;
+    int art_myco;
+    int art_lef;
+};
+
+struct MedHistory user_meds = {2}; //default to no
+
 int main(void) {
     int menu_choice = 0;
 
@@ -77,54 +99,54 @@ int main(void) {
 
     if(actual_meds == 1){
         printf("Have you taken antibiotics within the last 48 hours?\n1 for YES, 2 for NO: ");
-        int meds_anti = get_input_1_or_2("YES", "NO");
+        user_meds.meds_anti = get_input_1_or_2("YES", "NO");
 
         printf("Have you been taking Hair loss and/or prostate medications?\n1 for YES, 2 for NO: ");
-        int meds_pros = get_input_1_or_2("YES", "NO");
-        if(meds_pros == 1){
+        user_meds.meds_pros = get_input_1_or_2("YES", "NO");
+        if(user_meds.meds_pros == 1){
             printf("\tHave you been taking Finasteride (Propecia for hair loss, Proscar for prostate) within the last 1 month?\n\t1 for YES, 2 for NO: ");
-            int pros_fin = get_input_1_or_2("YES", "NO");
+             user_meds.pros_fin = get_input_1_or_2("YES", "NO");
 
             printf("\tHave you been taking Dutasteride (Avodart, Jalyn) within the last 6 months?\n\t1 for YES, 2 for NO: ");
-            int pros_dut = get_input_1_or_2("YES", "NO");
+             user_meds.pros_dut = get_input_1_or_2("YES", "NO");
         }
 
         printf("Have you taken any acne treatments recently?\n1 for YES, 2 for NO: ");
-        int meds_acne = get_input_1_or_2("YES", "NO");
-        if(meds_acne == 1){
+        user_meds.meds_acne = get_input_1_or_2("YES", "NO");
+        if( user_meds.meds_acne == 1){
             printf("\tDid you take Isotretinoin (Accutane, Claravis, Absorica, Amnesteem) for your acne within the last 1 month?\n\t1 for YES, 2 for NO: ");
-            int acne_iso = get_input_1_or_2("YES", "NO");
+            user_meds.acne_iso = get_input_1_or_2("YES", "NO");
             printf("\tDid you take Acitretin (Soriatane) for your acne within the last 3 years?\n\t1 for YES, 2 for NO: ");
-            int acne_aci = get_input_1_or_2("YES", "NO");
+            user_meds.acne_aci = get_input_1_or_2("YES", "NO");
         }
 
         printf("Have you been taking blood thinners and/or antiplatelet drugs?\n1 for YES, 2 for NO: ");
-        int meds_blood = get_input_1_or_2("YES", "NO");
-        if(meds_blood == 1){
+        user_meds.meds_blood = get_input_1_or_2("YES", "NO");
+        if(user_meds.meds_blood == 1){
             printf("\tHave you been taking Anticoagulants (Coumadin/Warfarin, Eliquis, Xarelto, Lovenox, Heparin) within the last 7 days?\n\t1 for YES, 2 for NO: ");
-            int blood_coag = get_input_1_or_2("YES", "NO");
+            user_meds.blood_coag = get_input_1_or_2("YES", "NO");
             printf("\tHave you been taking Antiplatelet Agents (Plavix, Effient, Brilinta) within the last 7 days?\n\t1 for YES, 2 for NO: ");
-            int blood_plate = get_input_1_or_2("YES", "NO");
+            user_meds.blood_plate = get_input_1_or_2("YES", "NO");
         }
 
         printf("Have you been taking HIV Prevention Medications (PrEP and PEP) recently?\n1 for YES, 2 for NO: ");
-        int meds_HIV = get_input_1_or_2("YES", "NO");
-        if(meds_HIV == 1){
+        user_meds.meds_HIV = get_input_1_or_2("YES", "NO");
+        if(user_meds.meds_HIV == 1){
             printf("\tHave you been taking Oral PrEP/PEP (Truvada, Descovy) for the last 3 months?\n\t1 for YES, 2 for NO: ");
-            int HIV_oral = get_input_1_or_2("YES", "NO");
+            user_meds.HIV_oral = get_input_1_or_2("YES", "NO");
             printf("\tHave you been taking Injectable PrEP (Apretude) within the last 2 years?\n\t1 for YES, 2 for NO: ");
-            int HIV_inject = get_input_1_or_2("YES", "NO");
+            user_meds.HIV_inject = get_input_1_or_2("YES", "NO");
         }
 
         printf("Have you been taking Rheumatoid Arthritis & Immunosuppressants recently?\n1 for YES, 2 for NO: ");
-        int meds_art = get_input_1_or_2("YES", "NO");
-        if(meds_art == 1){
+        user_meds.meds_art = get_input_1_or_2("YES", "NO");
+        if(user_meds.meds_art == 1){
             printf("\tHave you been taking Upadacitinib (Rinvoq) within the last 1 month?\n\t1 for YES, 2 for NO: ");
-            int art_upa = get_input_1_or_2("YES", "NO");
+            user_meds.art_upa = get_input_1_or_2("YES", "NO");
             printf("\tHave you been taking Mycophenolate mofetil (CellCept) within the last 6 weeks?\n\t1 for YES, 2 for NO: ");
-            int art_myco = get_input_1_or_2("YES", "NO");
+            user_meds.art_myco = get_input_1_or_2("YES", "NO");
             printf("\tHave you been taking Leflunomide (Arava) within the last 2 years?\n\t1 for YES, 2 for NO: ");
-            int art_lef = get_input_1_or_2("YES", "NO");
+            user_meds.art_lef = get_input_1_or_2("YES", "NO");
         }
 
         printf("\n\n");
@@ -166,7 +188,19 @@ int main(void) {
     }
 
     bool t = (actual_travel == 1);
-    bool u = (actual_meds == 1);
+    bool u = (actual_meds == 1) && (
+            user_meds.meds_anti == 1||
+            user_meds.pros_fin == 1 ||
+            user_meds.pros_dut == 1 ||
+            user_meds.acne_iso == 1 ||
+            user_meds.acne_aci == 1 ||
+            user_meds.blood_coag == 1 ||
+            user_meds.blood_plate == 1 ||
+            user_meds.HIV_oral == 1 ||
+            user_meds.HIV_inject == 1 ||
+            user_meds.art_lef == 1 ||
+            user_meds.art_myco == 1 ||
+            user_meds.art_upa == 1);
     bool v = (actual_tattoo == 1);
     bool x = (actual_risk == 1);
     bool y = (actual_preg == 1);
@@ -198,7 +232,21 @@ int main(void) {
         if (!s) printf(" - Hemoglobin levels are temporarily outside the target range.\n");
         if (w_minor) printf(" - Recovering from a minor illness. Please return when symptoms clear.\n");
         if (t) printf(" - Recent travel to infectious zones requiring a standard wait window.\n");
-        if (u) printf(" - Active window for recent medication processing.\n");
+        if (u) {
+            printf(" - Active window for recent medication processing:\n");
+            if (user_meds.meds_anti == 1) printf("   * Antibiotics (last 48 hours)\n");
+            if (user_meds.pros_fin == 1) printf("   * Finasteride (last 1 month)\n");
+            if (user_meds.pros_dut == 1) printf("   * Dutasteride (last 6 months)\n");
+            if (user_meds.acne_iso == 1) printf("   * Isotretinoin (last 1 month)\n");
+            if (user_meds.acne_aci == 1) printf("   * Acitretin (last 3 years)\n");
+            if (user_meds.blood_coag == 1) printf("   * Anticoagulants (last 7 days)\n");
+            if (user_meds.blood_plate == 1) printf("   * Antiplatelet Agents (last 7 days)\n");
+            if (user_meds.HIV_oral == 1) printf("   * Oral PrEP/PEP (last 3 months)\n");
+            if (user_meds.HIV_inject == 1) printf("   * Injectable PrEP (last 2 years)\n");
+            if (user_meds.art_upa == 1) printf("   * Upadacitinib (last 1 month)\n");
+            if (user_meds.art_myco == 1) printf("   * Mycophenolate mofetil (last 6 weeks)\n");
+            if (user_meds.art_lef == 1) printf("   * Leflunomide (last 2 years)\n");
+        }
         if (v) printf(" - Piercing/Tattoo deferral window has not yet passed.\n");
         if (!r && y) printf(" - Pregnancy/Breastfeeding requires structural recovery windows.\n");
         printf("\nPlease return to donate once the above items clear up!\n");
