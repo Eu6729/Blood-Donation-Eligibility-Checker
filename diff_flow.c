@@ -52,7 +52,6 @@ struct MedHistory{
     int acne_aci;
     int meds_blood;
     int blood_coag;
-    int blood_plate;
     int meds_HIV;
     int HIV_oral;
     int HIV_inject;
@@ -123,10 +122,8 @@ int main(void) {
         printf("Have you been taking blood thinners and/or antiplatelet drugs?\n1 for YES, 2 for NO: ");
         user_meds.meds_blood = get_input_1_or_2("YES", "NO");
         if(user_meds.meds_blood == 1){
-            printf("\tHave you been taking Anticoagulants (Coumadin/Warfarin, Eliquis, Xarelto, Lovenox, Heparin) within the last 7 days?\n\t1 for YES, 2 for NO: ");
+            printf("\tHave you been taking Blood Thinners (Atrixa, Coumadin, Eliquis, Fragmin, Heparin, Jantoven, Lovenox, Pradaxa, Savaysa, Warfilon, Xarelto) within the last 7 days?\n\t1 for YES, 2 for NO: ");
             user_meds.blood_coag = get_input_1_or_2("YES", "NO");
-            printf("\tHave you been taking Antiplatelet Agents (Plavix, Effient, Brilinta) within the last 7 days?\n\t1 for YES, 2 for NO: ");
-            user_meds.blood_plate = get_input_1_or_2("YES", "NO");
         }
 
         printf("Have you been taking HIV Prevention Medications (PrEP and PEP) recently?\n1 for YES, 2 for NO: ");
@@ -195,7 +192,6 @@ int main(void) {
             user_meds.acne_iso == 1 ||
             user_meds.acne_aci == 1 ||
             user_meds.blood_coag == 1 ||
-            user_meds.blood_plate == 1 ||
             user_meds.HIV_oral == 1 ||
             user_meds.HIV_inject == 1 ||
             user_meds.art_lef == 1 ||
@@ -239,8 +235,7 @@ int main(void) {
             if (user_meds.pros_dut == 1) printf("   * Dutasteride (last 6 months)\n");
             if (user_meds.acne_iso == 1) printf("   * Isotretinoin (last 1 month)\n");
             if (user_meds.acne_aci == 1) printf("   * Acitretin (last 3 years)\n");
-            if (user_meds.blood_coag == 1) printf("   * Anticoagulants (last 7 days)\n");
-            if (user_meds.blood_plate == 1) printf("   * Antiplatelet Agents (last 7 days)\n");
+            if (user_meds.blood_coag == 1) printf("   * Blood Thinners (last 7 days\n");
             if (user_meds.HIV_oral == 1) printf("   * Oral PrEP/PEP (last 3 months)\n");
             if (user_meds.HIV_inject == 1) printf("   * Injectable PrEP (last 2 years)\n");
             if (user_meds.art_upa == 1) printf("   * Upadacitinib (last 1 month)\n");
