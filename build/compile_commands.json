@@ -1,0 +1,8 @@
+[
+{
+  "directory": "C:/Users/Mar Justine Almo/Desktop/Projects/C/projects/Blood-Donation-Eligibility-Checker/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\gcc.exe  @CMakeFiles\\BloodDonationEligibilityChecker.dir\\includes_C.rsp -g -std=gnu99 -o CMakeFiles\\BloodDonationEligibilityChecker.dir\\main.c.obj -c \"C:\\Users\\Mar Justine Almo\\Desktop\\Projects\\C\\projects\\Blood-Donation-Eligibility-Checker\\main.c\"",
+  "file": "C:/Users/Mar Justine Almo/Desktop/Projects/C/projects/Blood-Donation-Eligibility-Checker/main.c",
+  "output": "CMakeFiles/BloodDonationEligibilityChecker.dir/main.c.obj"
+}
+]

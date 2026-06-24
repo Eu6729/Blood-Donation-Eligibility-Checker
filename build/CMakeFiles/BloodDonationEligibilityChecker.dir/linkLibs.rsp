@@ -1,0 +1,1 @@
+  -L"C:/Users/MARJUS~1/Desktop/Projects/C/projects/BLOOD-~1/lib"  -lraylib -lwinmm -lgdi32 -lopengl32 -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 
