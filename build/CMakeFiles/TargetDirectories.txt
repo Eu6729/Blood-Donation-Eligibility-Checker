@@ -1,0 +1,3 @@
+C:/Users/Mar Justine Almo/Desktop/Projects/C/projects/Blood-Donation-Eligibility-Checker/build/CMakeFiles/BloodDonationEligibilityChecker.dir
+C:/Users/Mar Justine Almo/Desktop/Projects/C/projects/Blood-Donation-Eligibility-Checker/build/CMakeFiles/edit_cache.dir
+C:/Users/Mar Justine Almo/Desktop/Projects/C/projects/Blood-Donation-Eligibility-Checker/build/CMakeFiles/rebuild_cache.dir
